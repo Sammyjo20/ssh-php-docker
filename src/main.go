@@ -35,7 +35,7 @@ func main() {
                 return func(s ssh.Session) {
                     ptyReq, winCh, isPty := s.Pty()
 
-                    cmd := exec.Command("php", "/app/php/index.php")
+                    cmd := exec.Command("php", "/home/server/index.php")
 
                     if isPty {
                         cmd.Env = append(cmd.Env, fmt.Sprintf("TERM=%s", ptyReq.Term))
