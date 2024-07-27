@@ -8,7 +8,7 @@ RUN export PATH=$PATH:/usr/local/bin/go
 
 # Copy our very basic script
 
-COPY ./src/go/main.go .
+COPY ./src/main.go .
 
 RUN go mod init sammyjo20/jourminal
 
