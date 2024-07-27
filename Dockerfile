@@ -1,5 +1,14 @@
 FROM ubuntu:24.04
 
+# Create a separate user to run the SSH shell which is more secure
+
+RUN useradd -ms /bin/bash -d /home/server server
+RUN chown -R server:server /home/server
+
+# Set the working directory to the home
+
+WORKDIR /home/server
+
 # Install Go
 
 RUN apt update && apt install golang git php php-cli sudo -y
@@ -27,5 +36,9 @@ RUN env go build main.go
 # Expose Port 22
 
 EXPOSE 22
+
+# Switch to user
+
+USER server
 
 ENTRYPOINT ["./main"]
