@@ -1,19 +1,18 @@
-FROM ubuntu:24.04
+FROM alpine:latest
 
 # Install Go and Sudo
 
-RUN apt update && apt install golang git sudo -y
+RUN apk update && apk add go git sudo bash
 
 # Install PHP
 
-RUN apt install php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear php-bcmath -y
+RUN apk add php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear php-bcmath
 
 RUN export PATH=$PATH:/usr/local/bin/go
 
 # Create a separate user to run the SSH shell which is more secure
 
-RUN useradd -m -s /bin/bash -d /home/server server
-RUN echo server:secret | chpasswd
+RUN adduser server --disabled-password
 
 # Allow the user access to their home directory
 
