@@ -6,7 +6,7 @@ RUN apk update && apk add go git sudo bash
 
 # Install PHP
 
-RUN apk add php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear php-bcmath
+RUN apk add php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear php-bcmath composer
 
 RUN export PATH=$PATH:/usr/local/bin/go
 
