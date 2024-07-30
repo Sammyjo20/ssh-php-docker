@@ -4,9 +4,11 @@ FROM alpine:latest
 
 RUN apk update && apk add go git sudo bash
 
-# Install PHP
+# Install PHP & Composer
 
-RUN apk add php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear php-bcmath composer
+RUN apk add \
+    php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear \
+    php-bcmath php-tokenizer php-dom php-simplexml php-xmlwriter composer
 
 RUN export PATH=$PATH:/usr/local/bin/go
 
@@ -26,7 +28,7 @@ WORKDIR /app/build
 
 COPY ./src/main.go .
 
-RUN go mod init sammyjo20/jourminal
+RUN go mod init sammyjo20/ssh-php
 
 # Install Dependencies
 
