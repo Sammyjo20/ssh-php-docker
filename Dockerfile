@@ -1,16 +1,16 @@
 FROM alpine:latest
 
-# Install Go and Sudo
+# Install Go, Git, Sudo & Bash
 
 RUN apk update && apk add go git sudo bash
+
+RUN export PATH=$PATH:/usr/local/bin/go
 
 # Install PHP & Composer
 
 RUN apk add \
     php php-cli php-common php-zip php-mbstring php-curl php-xml php-pear \
     php-bcmath php-tokenizer php-dom php-simplexml php-xmlwriter composer
-
-RUN export PATH=$PATH:/usr/local/bin/go
 
 # Create a separate user to run the SSH shell which is more secure
 
@@ -61,5 +61,7 @@ EXPOSE 22
 # Switch to user
 
 USER server
+
+# Start the server
 
 ENTRYPOINT ["./main"]
