@@ -36,6 +36,7 @@ func main() {
                     ptyReq, winCh, isPty := s.Pty()
 
                     cmd := exec.Command("php", "/home/server/index.php")
+                    cmd.Env = append(cmd.Env, fmt.Sprintf("REMOTE_ADDR=%s", s.RemoteAddr()))
 
                     if isPty {
                         cmd.Env = append(cmd.Env, fmt.Sprintf("TERM=%s", ptyReq.Term))
